@@ -1,33 +1,31 @@
-//express
+
 const express = require('express');
 const app = express();
 
-//Handlebars
-const Handlebars = require('handlebars'); //se instala para que ande allow-prototype-access
-const exphbs = require("express-handlebars"); //express handlebars, es el soporte de express
-const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access'); //se usa para poder seguir llamando directamente las variables de la vista
-//enviroment vars (.env file)
+const Handlebars = require('handlebars'); 
+const exphbs = require("express-handlebars");
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access'); 
 require('dotenv').config({ path: '.env' });
 
-//Express configuration
-const path = require("path"); //se usa para rutas absolutas
-app.use(express.json()); //respuestas en json
-app.use(express.urlencoded({extended:true})); //pasar request en formularios, se puede usar bodyParser pero este es nativo
+
+const path = require("path"); 
+app.use(express.json()); 
+app.use(express.urlencoded({extended:true}));
 
 //Public and Handlebars configuration
 //template engine
 app.engine(
-  ".hbs", //extensión que vamos a usar
+  ".hbs", //use handlebars with this extension
   exphbs({
     extname: ".hbs",
-    helpers: require('./helpers/hbs'), //un helper
-    handlebars: allowInsecurePrototypeAccess(Handlebars) //habilitar el uso de variables en vistas
+    helpers: require('./helpers/hbs'),
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
   })
 );
-app.set("view engine", ".hbs"); //engine que usamos
+app.set("view engine", ".hbs");
 
 // statics files
-app.use(express.static(path.join(__dirname, "public"))); //carpeta public
+app.use(express.static(path.join(__dirname, "public")));
 
 
 //require all routes

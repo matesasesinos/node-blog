@@ -1,8 +1,10 @@
-//Este es un helper para handlebars, se usa para todo lo sea global
+//express path for enviroment file
+const path = require("path");
+//enviroment vars (.env file)
+require('dotenv').config({ path: '.env' });
 module.exports = { 
-    //envio un titulo de pagina en caso de que no haya uno definido en el controlador
     setPageTitle: () => {
-        const pageTitle = 'Ejercicios en Express';
+        const pageTitle = process.env.TITLE;
         return pageTitle;
     }
 }
