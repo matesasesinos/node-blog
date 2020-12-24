@@ -23,3 +23,6 @@ Por último configurar el archivo .env
 
 ## Archivo .env
 El archivo .env.example contiene toda la configuración para hacer andar el blogcito, para esto hay que duplicarlo y cambiarle el nombre a .env
+
+## Iniciando el servidor
+Para iniciar el servidor de desarrollo "npm run dev" corre daemon.
